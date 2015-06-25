@@ -21,10 +21,12 @@ public class Main {
 	File propertiesFile = new File("settings.txt");
 	if (!propertiesFile.exists())
 	    propertiesFile.createNewFile();
+
 	Properties properties = new Properties();
 	properties.load(new FileInputStream(propertiesFile));
-	String browser = "";
-	if ((browser = properties.getProperty("browser")) == null)
+
+	String browser = properties.getProperty("browser");
+	if (browser == null)
 	    reselectBrowser(propertiesFile);
 
 	// Get song name from clipboard
@@ -52,7 +54,6 @@ public class Main {
 		reselectBrowser(propertiesFile);
 	    }
 	}
-	// in.close();
     }
 
     static void reselectBrowser(File propertiesFile) throws Exception,
@@ -70,7 +71,7 @@ public class Main {
 	System.out.println("Press enter to search again...");
 	Scanner console = new Scanner(System.in);
 	console.nextLine();
-	main(null);
 	console.close();
+	main(null);
     }
 }
